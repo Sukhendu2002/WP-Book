@@ -77,6 +77,7 @@ class Wp_Book {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->register_post_type();
 	}
 
 	/**
@@ -120,6 +121,11 @@ class Wp_Book {
 		 */
 		require_once plugin_dir_path( __DIR__ ) . 'public/class-wp-book-public.php';
 
+		/**
+		 * This class is responsible for registering custom post type.
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-wp-book-custom-post-type.php';
+
 		$this->loader = new Wp_Book_Loader();
 	}
 
@@ -137,6 +143,17 @@ class Wp_Book {
 		$plugin_i18n = new Wp_Book_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+	}
+	/**
+	 * Define the custom post type for this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function register_post_type() {
+
+		$plugin_post_type = new Wp_Book_Custom_Post_Type();
+		$this->loader->add_action( 'init', $plugin_post_type, 'register_custom_post_type' );
 	}
 
 	/**
