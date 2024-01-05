@@ -24,7 +24,7 @@ class Wp_Book_Custom_Post_Type {
 	 * @access   public
 	 * @return   void
 	 */
-	public static function register_custom_post_type() {
+	public function register_custom_post_type() {
 		$labels = array(
 			'name'                  => _x( 'Books', 'Post Type General Name', 'wp-book' ),
 			'singular_name'         => _x( 'Book', 'Post Type Singular Name', 'wp-book' ),

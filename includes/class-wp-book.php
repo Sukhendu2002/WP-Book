@@ -78,6 +78,7 @@ class Wp_Book {
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 		$this->register_post_type();
+		$this->register_taxonomies();
 	}
 
 	/**
@@ -126,6 +127,11 @@ class Wp_Book {
 		 */
 		require_once plugin_dir_path( __DIR__ ) . 'includes/class-wp-book-custom-post-type.php';
 
+		/**
+		 * This class is responsible for registering custom taxonomies.
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-wp-book-taxonomies.php';
+
 		$this->loader = new Wp_Book_Loader();
 	}
 
@@ -154,6 +160,17 @@ class Wp_Book {
 
 		$plugin_post_type = new Wp_Book_Custom_Post_Type();
 		$this->loader->add_action( 'init', $plugin_post_type, 'register_custom_post_type' );
+	}
+
+	/**
+	 * Define the custom taxonomies for this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function register_taxonomies() {
+		$plugin_taxonomies = new Wp_Book_Taxonomies();
+		$this->loader->add_action( 'init', $plugin_taxonomies, 'register_taxonomies' );
 	}
 
 	/**
