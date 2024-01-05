@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The plugin bootstrap file
  *
@@ -77,6 +76,5 @@ function run_wp_book() {
 
 	$plugin = new Wp_Book();
 	$plugin->run();
-
 }
 run_wp_book();
