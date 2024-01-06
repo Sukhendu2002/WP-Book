@@ -104,7 +104,7 @@ class Wp_Book_Admin_Metabox {
 		$output = '';
 		foreach ( $this->fields as $field ) {
 			$label      = '<label for="' . $field['id'] . '">' . $field['label'] . '</label>';
-			$meta_value = get_post_meta( $post->ID, $field['id'], true );
+			$meta_value = get_metadata( 'book', $post->ID, $field['id'], true );
 			if ( empty( $meta_value ) ) {
 				if ( isset( $field['default'] ) ) {
 					$meta_value = $field['default'];
@@ -145,7 +145,6 @@ class Wp_Book_Admin_Metabox {
 	 * @since 1.0.0
 	 */
 	public function save_meta_data( $post_id ) {
-
 		if ( ! isset( $_POST['BookInfo_nonce'] ) ) {
 			return $post_id;
 		}
@@ -160,7 +159,7 @@ class Wp_Book_Admin_Metabox {
 			$id = '';
 			if ( isset( $_POST[ $field['id'] ] ) ) {
 				$id = sanitize_text_field( wp_unslash( $_POST[ $field['id'] ] ) );
-				update_post_meta( $post_id, $field['id'], $id );
+				update_metadata( 'book', $post_id, $field['id'], $id );
 			}
 		}
 	}

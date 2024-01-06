@@ -131,6 +131,10 @@ class Wp_Book {
 		 * This class is responsible for registering custom taxonomies.
 		 */
 		require_once plugin_dir_path( __DIR__ ) . 'includes/class-wp-book-taxonomies.php';
+		/**
+		 * This class is responsible for handling database operations.
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-wp-book-db.php';
 
 		$this->loader = new Wp_Book_Loader();
 	}
@@ -147,8 +151,12 @@ class Wp_Book {
 	private function set_locale() {
 
 		$plugin_i18n = new Wp_Book_i18n();
-
+		$plugin_db   = '';
+		if ( class_exists( 'Wp_Book_Db' ) ) {
+			$plugin_db = new Wp_Book_Db();
+		}
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+		$this->loader->add_action( 'plugins_loaded', $plugin_db, 'bookmeta_init' );
 	}
 	/**
 	 * Define the custom post type for this plugin.

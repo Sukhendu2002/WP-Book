@@ -17,6 +17,16 @@
  */
 class Wp_Book_Db {
 	/**
+	 * Register the tablename in global $wpdb
+	 *
+	 * @since    1.0.0
+	 */
+	public function bookmeta_init() {
+		global $wpdb;
+		$wpdb->bookmeta = $wpdb->prefix . 'bookmeta';
+	}
+
+	/**
 	 * Create the table for storing the book meta
 	 *
 	 * @since    1.0.0
@@ -42,14 +52,18 @@ class Wp_Book_Db {
 	}
 
 	/**
-	 * Drop the table for storing the book meta
+	 * Drop the book meta table
 	 *
 	 * @since    1.0.0
 	 */
 	public function drop_bookmeta_table() {
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'bookmeta';
-		$sql        = "DROP TABLE IF EXISTS $table_name";
-		$wpdb->query( $sql );
+		$wpdb->query(
+			$wpdb->prepare(
+				'DROP TABLE IF EXISTS %s',
+				$table_name
+			)
+		);
 	}
 }
