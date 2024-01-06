@@ -29,43 +29,65 @@ class Wp_Book_Admin_Metabox {
 	private $screens = array( 'book' );
 
 	/**
+	 * Currency symbol.
+	 *
+	 * @var string
+	 */
+	private $currency_symbol = '₹';
+
+	/**
+	 * Prize label.
+	 *
+	 * @var string
+	 */
+	private $prize_label = '';
+
+
+	/**
 	 * Meta box fields.
 	 *
 	 * @var string
 	 */
-	private $fields = array(
-		array(
-			'label' => 'Author Name',
-			'id'    => 'wpbook_authorname',
-			'type'  => 'text',
-		),
-		array(
-			'label' => 'Price',
-			'id'    => 'wpbook_price',
-			'type'  => 'text',
-		),
-		array(
-			'label' => 'Publisher',
-			'id'    => 'wpbook_publisher',
-			'type'  => 'text',
-		),
-		array(
-			'label' => 'Year',
-			'id'    => 'wpbook_year',
-			'type'  => 'text',
-		),
-		array(
-			'label' => 'Edition',
-			'id'    => 'wpbook_edition',
-			'type'  => 'text',
-		),
-		array(
-			'label' => 'URL',
-			'id'    => 'wpbook_url',
-			'type'  => 'text',
-		),
-	);
-
+	private $fields = array();
+	/**
+	 * Wp_Book_Admin_Metabox constructor.
+	 */
+	public function __construct() {
+		$this->currency_symbol = get_option( 'wp_book_currency' );
+		$this->prize_label     = 'Price (' . $this->currency_symbol . ')';
+		$this->fields          = array(
+			array(
+				'label' => 'Author Name',
+				'id'    => 'wpbook_authorname',
+				'type'  => 'text',
+			),
+			array(
+				'label' => $this->prize_label,
+				'id'    => 'wpbook_price',
+				'type'  => 'text',
+			),
+			array(
+				'label' => 'Publisher',
+				'id'    => 'wpbook_publisher',
+				'type'  => 'text',
+			),
+			array(
+				'label' => 'Year',
+				'id'    => 'wpbook_year',
+				'type'  => 'text',
+			),
+			array(
+				'label' => 'Edition',
+				'id'    => 'wpbook_edition',
+				'type'  => 'text',
+			),
+			array(
+				'label' => 'URL',
+				'id'    => 'wpbook_url',
+				'type'  => 'text',
+			),
+		);
+	}
 		/**
 		 * Add the custom meta box.
 		 *

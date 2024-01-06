@@ -196,6 +196,8 @@ class Wp_Book {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_meta_box' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'save_meta_data' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_settings_page' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
 	}
 
 	/**

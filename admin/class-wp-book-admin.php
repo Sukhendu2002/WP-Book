@@ -49,6 +49,15 @@ class Wp_Book_Admin {
 	private $plugin_admin_metabox;
 
 	/**
+	 * Instance of the class that handles the settings page.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      Wp_Book_Admin_Settings    $plugin_admin_settings    Instance of the class that handles the settings page.
+	 */
+	private $plugin_admin_settings;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -62,6 +71,9 @@ class Wp_Book_Admin {
 		$this->load_dependencies();
 		if ( class_exists( 'Wp_Book_Admin_Metabox' ) ) {
 			$this->plugin_admin_metabox = new Wp_Book_Admin_Metabox();
+		}
+		if ( class_exists( 'Wp_Book_Admin_Settings' ) ) {
+			$this->plugin_admin_settings = new Wp_Book_Admin_Settings();
 		}
 	}
 
@@ -79,6 +91,10 @@ class Wp_Book_Admin {
 		 * The class responsible for registering the custom meta box.
 		 */
 		require_once plugin_dir_path( __DIR__ ) . 'admin/class-wp-book-admin-metabox.php';
+		/**
+		 * The class responsible for registering the settings page.
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'admin/class-wp-book-admin-settings.php';
 	}
 
 	/**
@@ -144,5 +160,25 @@ class Wp_Book_Admin {
 	public function save_meta_data( $post_id ) {
 
 		$this->plugin_admin_metabox->save_meta_data( $post_id );
+	}
+
+	/**
+	 * Register the settings page.
+	 *
+	 * @since 1.0.0
+	 */
+	public function add_settings_page() {
+
+		$this->plugin_admin_settings->add_settings_page();
+	}
+
+	/**
+	 * Register the settings.
+	 *
+	 * @since 1.0.0
+	 */
+	public function register_settings() {
+
+		$this->plugin_admin_settings->register_settings();
 	}
 }
