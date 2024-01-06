@@ -77,6 +77,7 @@ class Wp_Book {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->register_shortcodes();
 		$this->register_post_type();
 		$this->register_taxonomies();
 	}
@@ -135,6 +136,10 @@ class Wp_Book {
 		 * This class is responsible for handling database operations.
 		 */
 		require_once plugin_dir_path( __DIR__ ) . 'includes/class-wp-book-db.php';
+		/**
+		 * This class is responsible for handling database operations.
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-wp-book-shortcode.php';
 
 		$this->loader = new Wp_Book_Loader();
 	}
@@ -179,6 +184,17 @@ class Wp_Book {
 	private function register_taxonomies() {
 		$plugin_taxonomies = new Wp_Book_Taxonomies();
 		$this->loader->add_action( 'init', $plugin_taxonomies, 'register_taxonomies' );
+	}
+
+	/**
+	 * Define the custom taxonomies for this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function register_shortcodes() {
+		$plugin_shortcodes = new Wp_Book_Shortcode();
+		$this->loader->add_action( 'init', $plugin_shortcodes, 'wp_book_shortcode_init' );
 	}
 
 	/**

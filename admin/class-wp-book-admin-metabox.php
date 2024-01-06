@@ -53,16 +53,16 @@ class Wp_Book_Admin_Metabox {
 	 * Wp_Book_Admin_Metabox constructor.
 	 */
 	public function __construct() {
-		$this->currency_symbol = get_option( 'wp_book_currency' );
-		$this->prize_label     = 'Price (' . $this->currency_symbol . ')';
-		$this->fields          = array(
+		// $this->currency_symbol = get_option( 'wp_book_currency' );
+		// $this->prize_label     = 'Price (' . $this->currency_symbol . ')';
+		$this->fields = array(
 			array(
 				'label' => 'Author Name',
 				'id'    => 'wpbook_authorname',
 				'type'  => 'text',
 			),
 			array(
-				'label' => $this->prize_label,
+				'label' => 'Price(₹)',
 				'id'    => 'wpbook_price',
 				'type'  => 'text',
 			),
