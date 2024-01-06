@@ -50,6 +50,22 @@ class Wp_Book_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
+		$this->load_dependencies();
+	}
+	/**
+	 * Load the required dependencies for this plugin.
+	 * Create an instance of the loader which will be used to register the hooks
+	 * with WordPress.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function load_dependencies() {
+
+		/**
+		 * The class responsible for registering the custom meta box.
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'public/class-wp-book-public-widget.php';
 	}
 
 	/**
@@ -94,5 +110,14 @@ class Wp_Book_Public {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-book-public.js', array( 'jquery' ), $this->version, false );
+	}
+
+	/**
+	 * Register the custom widget.
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_widget() {
+		register_widget( 'Wp_Book_Public_Widget' );
 	}
 }
