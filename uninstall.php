@@ -28,3 +28,9 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
+
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-book-db.php';
+if ( class_exists( 'Wp_Book_Db' ) ) {
+	$wp_book_db = new Wp_Book_Db();
+	$wp_book_db->drop_bookmeta_table();
+}

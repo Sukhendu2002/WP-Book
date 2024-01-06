@@ -42,6 +42,7 @@ define( 'WP_BOOK_VERSION', '1.0.0' );
  */
 function activate_wp_book() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-book-activator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-book-db.php';
 	Wp_Book_Activator::activate();
 }
 

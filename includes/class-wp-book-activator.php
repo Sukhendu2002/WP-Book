@@ -29,5 +29,7 @@ class Wp_Book_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
+		$wp_book_db = new Wp_Book_Db();
+		$wp_book_db->create_bookmeta_table();
 	}
 }
