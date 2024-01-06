@@ -27,7 +27,7 @@ class Wp_Book_Admin_Settings {
 		add_submenu_page(
 			'edit.php?post_type=book',
 			'Book Settings',
-			'Settings',
+			__( 'Settings', 'wp-book' ),
 			'manage_options',
 			'wp_book_settings',
 			array( $this, 'render_settings_page' )

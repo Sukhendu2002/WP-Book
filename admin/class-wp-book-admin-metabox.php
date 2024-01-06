@@ -57,32 +57,32 @@ class Wp_Book_Admin_Metabox {
 		// $this->prize_label     = 'Price (' . $this->currency_symbol . ')';
 		$this->fields = array(
 			array(
-				'label' => 'Author Name',
+				'label' => __( 'Author Name', 'wp-book' ),
 				'id'    => 'wpbook_authorname',
 				'type'  => 'text',
 			),
 			array(
-				'label' => 'Price(₹)',
+				'label' => __( 'Price(₹)', 'wp-book' ),
 				'id'    => 'wpbook_price',
 				'type'  => 'text',
 			),
 			array(
-				'label' => 'Publisher',
+				'label' => __( 'Publisher', 'wp-book' ),
 				'id'    => 'wpbook_publisher',
 				'type'  => 'text',
 			),
 			array(
-				'label' => 'Year',
+				'label' => __( 'Year', 'wp-book' ),
 				'id'    => 'wpbook_year',
 				'type'  => 'text',
 			),
 			array(
-				'label' => 'Edition',
+				'label' => __( 'Edition', 'wp-book' ),
 				'id'    => 'wpbook_edition',
 				'type'  => 'text',
 			),
 			array(
-				'label' => 'URL',
+				'label' => __( 'URL', 'wp-book' ),
 				'id'    => 'wpbook_url',
 				'type'  => 'text',
 			),

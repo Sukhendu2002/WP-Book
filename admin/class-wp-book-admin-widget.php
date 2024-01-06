@@ -26,7 +26,7 @@ class Wp_Book_Admin_Widget {
 		$categories = $this->get_top_book_categories();
 
 		if ( empty( $categories ) ) {
-			echo 'No book categories found.';
+			esc_html_e( 'No book categories found.', 'wp-book' );
 			return;
 		}
 

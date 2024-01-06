@@ -23,7 +23,7 @@
  * @subpackage Wp_Book/includes
  * @author     Sukhendu Sekhar Guria <dev.sukhendu@gmail.com>
  */
-class Wp_Book_i18n {
+class Wp_Book_I18n {
 
 
 	/**

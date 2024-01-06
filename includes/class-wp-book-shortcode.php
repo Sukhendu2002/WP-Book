@@ -103,7 +103,7 @@ class Wp_Book_Shortcode {
 			$content .= '</div>';
 			wp_reset_postdata();
 		} else {
-			$content = 'No books found.';
+			$content = __( 'No books found', 'wp-book' );
 		}
 
 		return $content;

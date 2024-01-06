@@ -88,9 +88,13 @@ class Wp_Book {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - Wp_Book_Loader. Orchestrates the hooks of the plugin.
-	 * - Wp_Book_i18n. Defines internationalization functionality.
+	 * - Wp_Book_I18n. Defines internationalization functionality.
 	 * - Wp_Book_Admin. Defines all hooks for the admin area.
 	 * - Wp_Book_Public. Defines all hooks for the public side of the site.
+	 * - Wp_Book_Custom_Post_Type. Defines custom post type.
+	 * - Wp_Book_Taxonomies. Defines custom taxonomies.
+	 * - Wp_Book_Db. Defines database operations.
+	 * - Wp_Book_Shortcode. Defines shortcode.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -147,7 +151,7 @@ class Wp_Book {
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Wp_Book_i18n class in order to set the domain and to register the hook
+	 * Uses the Wp_Book_I18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -155,7 +159,7 @@ class Wp_Book {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Wp_Book_i18n();
+		$plugin_i18n = new Wp_Book_I18n();
 		$plugin_db   = '';
 		if ( class_exists( 'Wp_Book_Db' ) ) {
 			$plugin_db = new Wp_Book_Db();
