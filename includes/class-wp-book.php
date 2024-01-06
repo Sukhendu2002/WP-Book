@@ -214,6 +214,7 @@ class Wp_Book {
 		$this->loader->add_action( 'save_post', $plugin_admin, 'save_meta_data' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_settings_page' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
+		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'add_dashboard_widget' );
 	}
 
 	/**

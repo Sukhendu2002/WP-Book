@@ -58,6 +58,15 @@ class Wp_Book_Admin {
 	private $plugin_admin_settings;
 
 	/**
+	 * Instance of the class that handles the widget.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      Wp_Book_Admin_Widget    $plugin_admin_widget    Instance of the class that handles the widget.
+	 */
+	private $plugin_admin_widget;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -69,12 +78,9 @@ class Wp_Book_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
 		$this->load_dependencies();
-		if ( class_exists( 'Wp_Book_Admin_Metabox' ) ) {
-			$this->plugin_admin_metabox = new Wp_Book_Admin_Metabox();
-		}
-		if ( class_exists( 'Wp_Book_Admin_Settings' ) ) {
-			$this->plugin_admin_settings = new Wp_Book_Admin_Settings();
-		}
+		$this->plugin_admin_metabox  = new Wp_Book_Admin_Metabox();
+		$this->plugin_admin_settings = new Wp_Book_Admin_Settings();
+		$this->plugin_admin_widget   = new Wp_Book_Admin_Widget();
 	}
 
 	/**
@@ -95,6 +101,10 @@ class Wp_Book_Admin {
 		 * The class responsible for registering the settings page.
 		 */
 		require_once plugin_dir_path( __DIR__ ) . 'admin/class-wp-book-admin-settings.php';
+		/**
+		 * The class responsible for registering the settings page.
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'admin/class-wp-book-admin-widget.php';
 	}
 
 	/**
@@ -180,5 +190,19 @@ class Wp_Book_Admin {
 	public function register_settings() {
 
 		$this->plugin_admin_settings->register_settings();
+	}
+
+	/**
+	 * Add the dashboard widget.
+	 *
+	 * @since 1.0.0
+	 */
+	public function add_dashboard_widget() {
+
+		wp_add_dashboard_widget(
+			'wp_book_top_categories_widget',
+			__( 'Top 5 Book Categories', 'wp-book' ),
+			array( $this->plugin_admin_widget, 'dashboard_widget_content' )
+		);
 	}
 }
