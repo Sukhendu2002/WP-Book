@@ -76,7 +76,7 @@ class Wp_Book_Shortcode {
 				}
 
 				$content .= '<div class="wp-book-card">';
-				$content .= '<div class="wp-book-card-title">' . get_the_title() . '</div>';
+				$content .= '<div class="wp-book-card-title"><a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a></div>';
 				$content .= '<div class="wp-book-card-info">
 					<span class="wp-book-card-label">Author: </span> ' . get_metadata( 'book', get_the_ID(), 'wpbook_authorname', true ) . '
 				</div>';
