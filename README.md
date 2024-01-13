@@ -1,6 +1,6 @@
 # WP Book Plugin
 
-WP Book is a WordPress plugin assignment from [rtCamp](https://learn.rtcamp.com/courses/basic-wordpress-plugin-development/l/assignment-basic-wp-plugin-development/)
+WP Book is a WordPress plugin. This is an assignment project from the [WordPress Course](https://learn.rtcamp.com/courses/basic-wordpress-plugin-development/l/assignment-basic-wp-plugin-development/) offered by rtCamp.
 
 ## Features
 
