@@ -77,5 +77,6 @@ class Wp_Book_Custom_Post_Type {
 			'capability_type'     => 'post',
 		);
 		register_post_type( 'book', $args );
+		flush_rewrite_rules();
 	}
 }
